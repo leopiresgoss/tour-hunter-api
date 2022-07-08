@@ -8,4 +8,7 @@ class User < ApplicationRecord
          jwt_revocation_strategy: JwtDenylist
 
   validates :full_name, presence: true
+
+  has_many :tours, dependent: :destroy
+  has_many :reservations, dependent: :destroy
 end
