@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  package: MyString
+  user: one
+  tour_date: one
+
+two:
+  package: MyString
+  user: two
+  tour_date: two
