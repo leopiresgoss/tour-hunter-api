@@ -22,19 +22,15 @@ class Tour < ApplicationRecord
   #   end
   # end
 
-
   # def self.image_urls
   #   self.map(&:image_urls)
   # end
-
-
-
 
   # def image_urls
 
   #   return unless images.attachments
 
-  #   image_urls = self.images.map do |image| 
+  #   image_urls = self.images.map do |image|
   #     url_for(image)
   #   end
 
