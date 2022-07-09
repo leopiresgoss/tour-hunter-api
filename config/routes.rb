@@ -8,5 +8,5 @@ Rails.application.routes.draw do
              }
 
   resources :tours, only: %i[index create update show destroy]
-  resources :reservations, only: %i[create show destroy]
+  resources :reservations, only: %i[index create show destroy]
 end

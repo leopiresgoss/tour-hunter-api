@@ -1,5 +1,5 @@
 class ToursController < ApplicationController
-  before_action :set_tour, only: %i[ show update destroy ]
+  before_action :set_tour, only: %i[show update destroy]
 
   # GET /tours
   def index
@@ -16,7 +16,7 @@ class ToursController < ApplicationController
   # POST /tours
   def create
     @tour = Tour.new(tour_params)
-    tour_dates.each { |tour_date| puts tour_date.date }
+    @tour.user = current_user
     if @tour.save
       render json: @tour, status: :created, location: @tour
     else
@@ -48,7 +48,11 @@ class ToursController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def tour_params
-    # params.fetch(:tour, {})
-    params.require(:tour).permit(:name, :location, :description, :price, :user_id, :tour_dates)
+    params.permit(:name,
+                  :location,
+                  :description,
+                  :price,
+                  images: [],
+                  tour_dates_attributes: [:date])
   end
 end

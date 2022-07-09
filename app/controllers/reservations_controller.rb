@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations
   def index
-    @reservations = Reservation.where(user_id: params['user_id'])
+    @reservations = Reservation.where(user_id: current_user.id)
 
     render json: @reservations
   end
@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
   # POST /reservations
   def create
     @reservation = Reservation.new(reservation_params)
-
+    @reservation.user = current_user
     if @reservation.save
       render json: @reservation, status: :created, location: @reservation
     else
@@ -27,16 +27,18 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   def destroy
     @reservation.destroy
+    render json: { message: 'Deleted successfully.' }, status: :ok
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reservation
-      @reservation = Reservation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def reservation_params
-      params.fetch(:reservation, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def reservation_params
+    params.permit(:package, :tour_date_id)
+  end
 end
