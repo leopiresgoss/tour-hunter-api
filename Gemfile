@@ -47,6 +47,7 @@ group :development do
   # gem "spring"
 end
 
+gem 'active_model_serializers'
 gem 'devise'
 gem 'devise-jwt'
 gem 'rubocop', '>= 1.0', '< 2.0'
