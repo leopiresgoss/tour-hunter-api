@@ -3,7 +3,7 @@ class ToursController < ApplicationController
 
   # GET /tours
   def index
-    @tours = Tour.all
+    @tours = Tour.includes(:user, :tour_dates, :images_attachments).all
 
     render json: @tours
   end
