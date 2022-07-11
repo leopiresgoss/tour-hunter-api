@@ -10,12 +10,8 @@ describe Users::SessionsController, type: :request do
       login_with_api(user)
     end
 
-    # it 'returns a token' do
-    #   expect(response.headers['Authorization']).to be_present
-    # end
-
     it 'returns a token' do
-      expect(response.headers).to eq('hello')
+      expect(response.headers['Authorization']).to be_present
     end
 
     it 'returns 200' do
@@ -39,10 +35,14 @@ describe Users::SessionsController, type: :request do
   end
 
   context 'When logging out' do
+    before do
+      login_with_api(user)
+    end
     it 'returns 204' do
-      delete logout_url
-
-      expect(response).to have_http_status(204)
+      token = response.headers['Authorization']
+      delete logout_url, headers: { 'Authorization' => token }
+      expect(response).to have_http_status(200)
     end
   end
+
 end
