@@ -1,10 +1,14 @@
 class Users::SessionsController < Devise::SessionsController
   respond_to :json
 
+  # def create
+  #   render json: { message: 'Signed in successfully.', role: current_user.role }, status: :ok
+  # end
+
   private
 
   def respond_with(_resource, _opts = {})
-    render json: { message: 'Logged.' }, status: :ok
+    render json: { message: 'Logged.', role: current_user.role }, status: :ok
   end
 
   def respond_to_on_destroy

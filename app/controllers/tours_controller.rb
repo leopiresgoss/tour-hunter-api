@@ -3,7 +3,7 @@ class ToursController < ApplicationController
 
   # GET /tours
   def index
-    @tours = Tour.all
+    @tours = Tour.includes(:user, :tour_dates, :images_attachments).all
 
     render json: @tours
   end
@@ -20,6 +20,7 @@ class ToursController < ApplicationController
     if @tour.save
       render json: @tour, status: :created, location: @tour
     else
+      puts 'Testing'
       render json: @tour.errors, status: :unprocessable_entity
     end
   end
