@@ -20,6 +20,7 @@ class ToursController < ApplicationController
     if @tour.save
       render json: @tour, status: :created, location: @tour
     else
+      puts 'Testing'
       render json: @tour.errors, status: :unprocessable_entity
     end
   end

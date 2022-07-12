@@ -1,0 +1,366 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/users":
+    post:
+      summary: Create a user
+      tags:
+      - User
+      parameters: []
+      responses:
+        '200':
+          description: user created
+        '400':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  properties:
+                    full_name:
+                      type: string
+                    role:
+                      type: string
+                    email:
+                      type: string
+                    pasword:
+                      type: string
+              required:
+              - full_name
+              - email
+              - password
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user:
+                  properties:
+                    full_name:
+                      type: string
+                    role:
+                      type: string
+                    email:
+                      type: string
+                    pasword:
+                      type: string
+              required:
+              - full_name
+              - email
+              - password
+  "/users/sign_in":
+    post:
+      summary: Login
+      tags:
+      - User Login
+      parameters: []
+      responses:
+        '200':
+          description: user logged
+        '401':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  properties:
+                    email:
+                      type: string
+                    pasword:
+                      type: string
+              required:
+              - email
+              - password
+          application/xml:
+            schema:
+              type: object
+              properties:
+                user:
+                  properties:
+                    email:
+                      type: string
+                    pasword:
+                      type: string
+              required:
+              - email
+              - password
+  "/tours":
+    post:
+      summary: Create a Tour
+      tags:
+      - Tours
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: tour created
+        '400':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                location:
+                  type: string
+                price:
+                  type: number
+                description:
+                  type: string
+              required:
+              - name
+              - location
+              - price
+              - description
+          application/xml:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                location:
+                  type: string
+                price:
+                  type: number
+                description:
+                  type: string
+              required:
+              - name
+              - location
+              - price
+              - description
+    get:
+      summary: Get list of Tours
+      tags:
+      - Tours
+      parameters: []
+      responses:
+        '200':
+          description: list of tours
+        '400':
+          description: invalid request
+  "/tours/{id}":
+    put:
+      summary: Update a Tour
+      tags:
+      - Tours
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+          required:
+          - name
+        required: true
+      responses:
+        '200':
+          description: tour updated
+        '400':
+          description: invalid request
+    delete:
+      summary: Delete a Tour
+      tags:
+      - Tours
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: tour deleted
+        '400':
+          description: invalid request
+    get:
+      summary: Show a tour
+      tags:
+      - Tours
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: show a tour
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  location:
+                    type: string
+                  price:
+                    type: number
+                  description:
+                    type: string
+                required:
+                - name
+                - location
+                - price
+                - description
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  location:
+                    type: string
+                  price:
+                    type: number
+                  description:
+                    type: string
+                required:
+                - name
+                - location
+                - price
+                - description
+        '400':
+          description: invalid request
+  "/reservations":
+    post:
+      summary: Create a Reservation
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '200':
+          description: reservation created
+        '400':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                package:
+                  type: string
+                tour_date_id:
+                  type: integer
+              required:
+              - package
+              - tour_date_id
+          application/xml:
+            schema:
+              type: object
+              properties:
+                package:
+                  type: string
+                tour_date_id:
+                  type: integer
+              required:
+              - package
+              - tour_date_id
+    get:
+      summary: Get list of reservations
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '200':
+          description: list of reservations
+        '400':
+          description: invalid request
+  "/reservations/{id}":
+    put:
+      summary: Update a Reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        type: string
+        schema:
+          type: object
+          properties:
+            package:
+              type: string
+          required:
+          - package
+        required: true
+      responses:
+        '200':
+          description: reservation updated
+        '400':
+          description: invalid request
+    delete:
+      summary: Delete a Reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: reservation deleted
+        '400':
+          description: invalid request
+    get:
+      summary: Show a reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: show a reservation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  package:
+                    type: string
+                  tour_date_id:
+                    type: integer
+                required:
+                - package
+                - tour_date_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  package:
+                    type: string
+                  tour_date_id:
+                    type: integer
+                required:
+                - package
+                - tour_date_id
+        '400':
+          description: invalid request
+servers:
+- url: https://tourhunterapp.herokuapp.com
+  variables:
+    defaultHost:
+      default: https://tourhunterapp.herokuapp.com
