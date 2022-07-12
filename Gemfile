@@ -50,15 +50,15 @@ group :development do
 end
 
 group :test do
-  gem 'factory_bot_rails'
-  gem 'shoulda-matchers'
-  gem 'faker'
   gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'jsonapi-rspec'
+  gem 'shoulda-matchers'
 end
 
 gem 'active_model_serializers'
 gem 'devise'
 gem 'devise-jwt'
-gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'rswag'
+gem 'rubocop', '>= 1.0', '< 2.0'

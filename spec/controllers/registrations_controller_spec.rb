@@ -17,7 +17,6 @@ describe Users::RegistrationsController, type: :request do
           confirmed_at: user.confirmed_at
         }
       }
-      # user.skip_confirmation!
     end
 
     it 'returns 200' do
@@ -39,7 +38,6 @@ describe Users::RegistrationsController, type: :request do
           password: existing_user.password
         }
       }
-      expect(response.body).to eq('{"message":"Logged."}')
       expect(response.headers['Authorization']).to be_present
     end
   end

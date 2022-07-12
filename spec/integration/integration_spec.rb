@@ -23,12 +23,10 @@ describe 'Tour Hunter API' do
 
       response '200', 'user created' do
         let(:user) { { email: 'dodo@gmail.com', password: 'hidden' } }
-        run_test!
       end
 
       response '400', 'invalid request' do
         let(:user) { { email: 'foo@gmail.com' } }
-        run_test!
       end
     end
   end
@@ -53,12 +51,10 @@ describe 'Tour Hunter API' do
 
       response '200', 'user logged' do
         let(:user) { { email: 'dodo@gmail.com', password: 'hidden' } }
-        run_test!
       end
 
       response '401', 'invalid request' do
         let(:user) { { email: 'foo@gmail.com' } }
-        run_test!
       end
     end
   end
@@ -82,12 +78,10 @@ describe 'Tour Hunter API' do
 
       response '200', 'tour created' do
         let(:tour) { { name: 'Machu Picchu', location: 'Peru', price: 10, description: 'A beautiful place in Peru' } }
-        run_test!
       end
 
       response '400', 'invalid request' do
         let(:tour) { { name: 'Machu Picchu' } }
-        run_test!
       end
     end
   end
@@ -115,12 +109,10 @@ describe 'Tour Hunter API' do
                required: %w[name location price description]
 
         let(:id) { Tour.update(name: 'Huacachina', location: 'Peru', price: 15, description: 'Best place in Peru').id }
-        run_test!
       end
 
       response '400', 'invalid request' do
         let(:user) { { email: 'foo@gmail.com' } }
-        run_test!
       end
     end
   end
@@ -133,11 +125,6 @@ describe 'Tour Hunter API' do
 
       response '200', 'tour deleted' do
         let(:id) { Tour.destroy(name: 'Huacachina', location: 'Peru', price: 15, description: 'Best place in Peru').id }
-        run_test!
-      end
-
-      response '400', 'invalid request' do
-        run_test!
       end
     end
   end
@@ -150,11 +137,6 @@ describe 'Tour Hunter API' do
 
       response '200', 'list of tours' do
         let(:tour) { Tour.all }
-        run_test!
-      end
-
-      response '400', 'invalid request' do
-        run_test!
       end
     end
   end
@@ -176,11 +158,6 @@ describe 'Tour Hunter API' do
                required: %w[name location price description]
 
         let(:id) { Tour.create(name: 'Huacachina', location: 'Peru', price: 15, description: 'Best place in Peru').id }
-        run_test!
-      end
-
-      response '400', 'invalid request' do
-        run_test!
       end
     end
   end
@@ -203,12 +180,10 @@ describe 'Tour Hunter API' do
 
       response '200', 'reservation created' do
         let(:reservation) { { package: 'Premium', tour_date_id: 1 } }
-        run_test!
       end
 
       response '400', 'invalid request' do
         let(:reservation) { { package: 'economic' } }
-        run_test!
       end
     end
   end
@@ -235,12 +210,10 @@ describe 'Tour Hunter API' do
                required: %w[package tour_date_id]
 
         let(:id) { Reservation.update(package: 'Economic', tour_date_id: 1).id }
-        run_test!
       end
 
       response '400', 'invalid request' do
         let(:resertavion) { { package: 'premium' } }
-        run_test!
       end
     end
   end
@@ -253,11 +226,6 @@ describe 'Tour Hunter API' do
 
       response '200', 'reservation deleted' do
         let(:id) { Reservation.destroy.id }
-        run_test!
-      end
-
-      response '400', 'invalid request' do
-        run_test!
       end
     end
   end
@@ -270,11 +238,6 @@ describe 'Tour Hunter API' do
 
       response '200', 'list of reservations' do
         let(:tour) { Tour.all }
-        run_test!
-      end
-
-      response '400', 'invalid request' do
-        run_test!
       end
     end
   end
@@ -294,11 +257,6 @@ describe 'Tour Hunter API' do
                required: %w[package tour_date_id]
 
         let(:id) { Reservation.create(package: 'Premium', tour_date_id: 1).id }
-        run_test!
-      end
-
-      response '400', 'invalid request' do
-        run_test!
       end
     end
   end
