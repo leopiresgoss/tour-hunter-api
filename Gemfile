@@ -60,5 +60,4 @@ end
 gem 'active_model_serializers'
 gem 'devise'
 gem 'devise-jwt'
-gem 'rswag'
 gem 'rubocop', '>= 1.0', '< 2.0'
