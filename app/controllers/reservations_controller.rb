@@ -18,7 +18,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.user = current_user
     if @reservation.save
-      render json:  { message: 'Booked successfully.' }, status: :created, location: @reservation
+      render json: { message: 'Booked successfully.' }, status: :created, location: @reservation
     else
       render json: @reservation.errors, status: :unprocessable_entity
     end
