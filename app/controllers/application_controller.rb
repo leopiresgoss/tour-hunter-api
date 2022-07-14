@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   before_action :update_allowed_parameters, if: :devise_controller?
   before_action :authenticate_user!
   respond_to :json
