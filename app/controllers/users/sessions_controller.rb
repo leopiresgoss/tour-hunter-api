@@ -11,8 +11,17 @@ class Users::SessionsController < Devise::SessionsController
 
   private
 
-  def respond_with(_resource, _opts = {})
-    render json: { message: 'Logged.' }, status: :ok
+  def respond_with(resource, _opts = {})
+    if resource.persisted?
+      render json: {
+        status: {code: 200, message: 'Logged'},
+        data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
+      }
+    else
+      render json: {
+        status: {message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}"}
+      }, status: :unprocessable_entity
+    end
   end
 
   def respond_to_on_destroy
