@@ -1,0 +1,337 @@
+---
+swagger: '2.0'
+info:
+  title: API V1
+  version: v1
+paths:
+  "/users":
+    post:
+      summary: Create a user
+      tags:
+      - User
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      - name: user
+        in: body
+        schema:
+          type: object
+          properties:
+            user:
+              properties:
+                full_name:
+                  type: string
+                role:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+          required:
+          - full_name
+          - email
+          - password
+      responses:
+        '200':
+          description: user created
+        '400':
+          description: invalid request
+  "/users/sign_in":
+    post:
+      summary: Login
+      tags:
+      - User Login
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      - name: pet
+        in: body
+        schema:
+          type: object
+          properties:
+            user:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+          required:
+          - email
+          - password
+      responses:
+        '200':
+          description: user logged
+        '401':
+          description: invalid request
+  "/tours":
+    post:
+      summary: Create a Tour
+      tags:
+      - Tours
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      - name: Authorization
+        in: header
+        type: apiKey
+      - name: tour
+        in: body
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            location:
+              type: string
+            price:
+              type: number
+            description:
+              type: string
+          required:
+          - name
+          - location
+          - price
+          - description
+      responses:
+        '400':
+          description: invalid request
+    get:
+      summary: Get list of Tours
+      tags:
+      - Tours
+      consumes:
+      - application/json
+      - application/xml
+      responses:
+        '200':
+          description: list of tours
+  "/tours/{id}":
+    put:
+      summary: Update a Tour
+      tags:
+      - Tours
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+          required:
+          - name
+        required: true
+      responses:
+        '200':
+          description: tour updated
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              location:
+                type: string
+              price:
+                type: number
+              description:
+                type: string
+            required:
+            - name
+            - location
+            - price
+            - description
+        '400':
+          description: invalid request
+    delete:
+      summary: Delete a Tour
+      tags:
+      - Tours
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: tour deleted
+    get:
+      summary: Show a tour
+      tags:
+      - Tours
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: show a tour
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              location:
+                type: string
+              price:
+                type: number
+              description:
+                type: string
+            required:
+            - name
+            - location
+            - price
+            - description
+
+  "/reservations":
+    post:
+      summary: Create a Reservation
+      tags:
+      - Reservations
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      - name: Authorization
+        in: header
+        type: apiKey
+      - name: reservation
+        in: body
+        schema:
+          type: object
+          properties:
+            package:
+              type: string
+            tour_date_id:
+              type: integer
+          required:
+          - package
+          - tour_date_id
+      responses:
+        '200':
+          description: reservation created
+        '400':
+          description: invalid request
+    get:
+      summary: Get list of reservations
+      tags:
+      - Reservations
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      - name: Authorization
+        in: header
+        type: apiKey
+      responses:
+        '200':
+          description: list of reservations
+        '400':
+          description: invalid request
+  "/reservations/{id}":
+    put:
+      summary: Update a Reservation
+      tags:
+      - Reservations
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      - name: Authorization
+        in: header
+        type: apiKey
+      - name: id
+        in: path
+        type: string
+        schema:
+          type: object
+          properties:
+            package:
+              type: string
+          required:
+          - package
+        required: true
+      responses:
+        '200':
+          description: reservation updated
+          schema:
+            type: object
+            properties:
+              package:
+                type: string
+              tour_date_id:
+                type: integer
+            required:
+            - package
+            - tour_date_id
+        '400':
+          description: invalid request
+    delete:
+      summary: Delete a Reservation
+      tags:
+      - Reservations
+      consumes:
+      - application/json
+      - application/xml
+      parameters:
+      parameters:
+      - name: Authorization
+        in: header
+        type: apiKey
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: reservation deleted
+        '400':
+          description: invalid request
+    get:
+      summary: Show a reservation
+      tags:
+      - Reservations
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      parameters:
+      - name: Authorization
+        in: header
+        type: apiKey
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: show a reservation
+          schema:
+            type: object
+            properties:
+              package:
+                type: string
+              tour_date_id:
+                type: integer
+            required:
+            - package
+            - tour_date_id
+        '400':
+          description: invalid request
+servers:
+- url: https://tourhunterapi.herokuapp.com
+  variables:
+    defaultHost:
+      default: https://tourhunterapi.herokuapp.com
