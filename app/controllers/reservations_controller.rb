@@ -1,4 +1,7 @@
+require_relative '../helpers/reservations_helper'
+
 class ReservationsController < ApplicationController
+  include ReservationHelper
   before_action :set_reservation, only: %i[show update destroy]
 
   # GET /reservations
@@ -28,6 +31,33 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     render json: { message: 'Cancelled successfully.' }, status: :ok
+  end
+
+  # my_reservations
+  def my_reservations 
+
+    reserves = fetch_my_reservations
+    @my_reserves = [] 
+    reserves.each do |reservation|
+      @images = Tour.find_by_id(reservation['tour_id']).images_attachments
+      @my_reserves <<
+      {
+        reservation_id: reservation['reservation_id'],
+        package: reservation['package'],
+        tour_date_id: reservation['tour_date_id'],
+        tour_date: reservation['tour_date'],
+        tour_id: reservation['tour_id'],
+        tour_name: reservation['tour_name'],
+        tour_description: reservation['tour_description'],
+        tour_images: @images,
+        tour_price: reservation['tour_price'],
+        tour_location: reservation['tour_location'],
+        user_id: reservation['user_id'],
+        full_name: reservation['full_name'],
+        user_email: reservation['user_email']
+      }
+    end 
+    render json: @my_reserves, status: :ok   
   end
 
   private
