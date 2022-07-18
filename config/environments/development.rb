@@ -49,7 +49,7 @@ Rails.application.configure do
     port: 587,
     domain: 'localhost.com',
     user_name: 'tourhunterapp@gmail.com',
-    password: 'chyoidtjlotrnedj',
+    password: ENV['master_pwd'],
     authentication: 'plain',
     enable_starttls_auto: true,
     open_timeout: 5,
