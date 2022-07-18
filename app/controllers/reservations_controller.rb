@@ -43,7 +43,7 @@ class ReservationsController < ApplicationController
     users as u ON r.user_id=u.id
     WHERE r.user_id = #{current_user.id}"
     reserves = ActiveRecord::Base.connection.execute(sql)
-    reserves = fetch_my_reservations
+
     @my_reserves = []
     reserves.each do |reservation|
       @images = Tour.find_by_id(reservation['tour_id']).image_urls
