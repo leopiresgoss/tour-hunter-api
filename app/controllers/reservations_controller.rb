@@ -44,30 +44,21 @@ class ReservationsController < ApplicationController
     WHERE r.user_id = #{current_user.id}"
     reserves = ActiveRecord::Base.connection.execute(sql)
 
-    @my_reserves = []
-    reserves.each do |reservation|
-      @images = Tour.find_by_id(reservation['tour_id']).image_urls
-      @my_reserves <<
-      {
-        reservation_id: reservation['reservation_id'],
-        package: reservation['package'],
-        tour_date_id: reservation['tour_date_id'],
-        tour_date: reservation['tour_date'],
-        tour_id: reservation['tour_id'],
-        tour_name: reservation['tour_name'],
-        tour_description: reservation['tour_description'],
-        tour_images: @images,
-        tour_price: reservation['tour_price'],
-        tour_location: reservation['tour_location'],
-        user_id: reservation['user_id'],
-        full_name: reservation['full_name'],
-        user_email: reservation['user_email']
-      }
-    end
+    @my_reserves = attach_images(reserves)
     render json: @my_reserves, status: :ok
   end
 
   private
+
+  def attach_images(reserves)
+    @my_reserves = []
+    reserves.each do |reservation|
+      @images = Tour.find_by_id(reservation['tour_id']).image_urls
+      reservation['tour_images'] = @images
+      @my_reserves << reservation
+    end
+    @my_reserves
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_reservation
