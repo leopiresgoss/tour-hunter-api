@@ -4,8 +4,14 @@
 
 ## Deployment
 
-You can find the app live [here](https://tourhunterapi.herokuapp.com
+You can find the app live [here](https://tourhunterapp.herokuapp.com
 )
+
+## Documentation
+
+> Here you can review the documentation of the API:
+
+[API Documentation](https://tourhunterapi.herokuapp.com/api-docs/index.html)
 
 ## Front-end Repository
 
@@ -13,10 +19,13 @@ You can find the back-end API [here](https://github.com/leopiresgoss/tour-hunter
 
 ## Built With
 
-- Languages: _**Ruby**_
-- Frameworks: _**Ruby on Rails**_
-- Tools: _**Devise JWT, Cloudinary*_
-- Technologies used: _**Visual Studio Code**_
+- _**Ruby 3.1.2**_
+- _**Ruby on Rails  7.0.3**_
+- _**Devise  4.8.1**_
+- _**Devise-JWT 0.9.0**_
+- _**Pg 1.2.1**_
+- _**Cloudinary 1.23.0**_
+- _**Rspec-rails 5.1.2**_
 
 ## Getting Started
 
@@ -30,10 +39,14 @@ You can find the back-end API [here](https://github.com/leopiresgoss/tour-hunter
 
 #### Step 1:
 
-- Set a [Cloudinary](https://cloudinary.com) account and a add cloudinary.yml with your credentials in the config folder
-- In `.env` file, add your own credentials. The master_pwd should be your mailer password to send confirmation emails.
+- Set a [Cloudinary](https://cloudinary.com) account and a add cloudinary.yml with your credentials in the `config` folder
+- In `.env` file, add your own credentials: 
+    - The master_pwd should be your mailer password to send confirmation emails.
+    - The DEVISE_JWT_SECRET_KEY shoul be generated running the command: `bundle exec rails secret`
 
 - Alternatively, you can just download the complete zip file and extract the folder in your directory
+
+
 
 #### Step 2:
 
@@ -53,8 +66,6 @@ In the project directory, you can run:
 
 ## Authors
 
-### Front-end Team
-
 👤 **Mengstu Fentaw**
 
 - Github: [@mengiefen](https://github.com/mengiefen)
@@ -73,14 +84,11 @@ In the project directory, you can run:
 - Twitter: [@Thi_ponce](https://twitter.com/Thi_ponce)
 - LinkedIn: [@thiago-ponce](https://linkedin.com/in/thiago-ponce)
 
-### Back-end Team
-
 👤 **Behnam Aghaali**
 
 - GitHub: [@Behnam1369](https://github.com/Behnam1369)
 - LinkedIn: [@Behnam-Aghaali](https://www.linkedin.com/in/behnam-aghaali)
 - Twitter: [@Behnamagh1369](https://twitter.com/behnamagh1369)
-
 
 👤 **Yersel Hurtado**
 
@@ -107,4 +115,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](https://github.com/leopiresgoss/tour-hunter) licensed.
