@@ -1,0 +1,19 @@
+<p>Welcome <b><%= @email %>!</b></p>
+
+<p>Thanks for signing up at <%= link_to 'Tourhunterapp', 'https://tourhunterapp.herokuapp.com' %>. To confirm your email address, please click on the below link.</p>
+
+<p style="margin-top: 30px;margin-bottom: 30px;" >
+  <%= link_to 'Confirm my account', "https://tourhunterapp.herokuapp.com/users/sign_in?confirm_token=#{@token}",  
+  style:"color: white;
+    font-weight: bold;
+    background-color: blue;
+    padding: 15px;
+    border-radius: 10px;" %>
+</p>
+
+<p>
+Best reagrds, <br/>
+Tourhunterapp Team <br/>
+<img src='https://i.postimg.cc/MKYp1tDz/Tour-Hunter-f4fb3f6271810a2cf44f.png' style="width:150px; height: 50px">
+</p>
+
