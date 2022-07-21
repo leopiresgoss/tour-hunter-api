@@ -64,6 +64,12 @@ In the project directory, you can run:
 
 ##### `rails s`
 
+## Kanban Board
+
+ - Link to the completed Tour Hunter [Kanban Board](https://github.com/leopiresgoss/tour-hunter-api/projects/1)
+ - Link to the screenshot of initial [Kanban Board](https://user-images.githubusercontent.com/61767582/177650437-7a253b77-9ad3-4bb5-bc7b-a66f8e67fede.png)
+ - Total members: 5
+
 ## Authors
 
 👤 **Mengstu Fentaw**
